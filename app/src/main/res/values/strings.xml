@@ -3,4 +3,18 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <!-- Drawer Items -->
+    <string name="drawer_item_compact_header">CompactHeader Sample</string>
+    <string name="drawer_item_action_bar">ActionBar Sample</string>
+    <string name="drawer_item_multi_drawer">MultiDrawer Sample</string>
+    <string name="drawer_item_non_translucent_status_drawer">NonTranslucentStatusDrawer Sample</string>
+    <string name="drawer_item_complex_header_drawer">ComplexHeaderDrawer Sample</string>
+    <string name="drawer_item_simple_fragment_drawer">SimpleFragment Sample</string>
+    <string name="drawer_item_embedded_drawer">EmbeddedDrawer Sample</string>
+    <string name="drawer_item_fullscreen_drawer">FullScreen Sample</string>
+    <string name="drawer_item_leave_apply">Leave Apply</string>
+    <string name="drawer_item_relieve">Relieve</string>
+    <string name="drawer_item_approve">Approve</string>
+    <string name="drawer_item_my_leave">My Leave</string>
+
 </resources>
