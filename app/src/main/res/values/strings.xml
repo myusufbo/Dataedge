@@ -16,5 +16,6 @@
     <string name="drawer_item_relieve">Relieve</string>
     <string name="drawer_item_approve">Approve</string>
     <string name="drawer_item_my_leave">My Leave</string>
+    <string name="title_activity_home">Home</string>
 
 </resources>
