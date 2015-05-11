@@ -41,7 +41,7 @@
 
     <!--New Drwaer-->
     <color name="material_drawer_primary">#2196F3</color>
-    <color name="material_drawer_primary_dark">#1976D2</color>
+    <color name="material_drawer_primary_dark">#ff10c8d2</color>
     <color name="material_drawer_primary_light">#BBDEFB</color>
     <color name="material_drawer_accent">#FF4081</color>
 

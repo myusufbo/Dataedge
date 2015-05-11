@@ -1,11 +1,81 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:layout_height="match_parent"
+    android:background="@color/material_drawer_primary_dark"
+    tools:context=".MainActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/logIn"
+        android:text="@string/logIn"
+        android:textSize="62sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/colorTextPrimary"
+        android:layout_marginTop="20dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:id="@+id/userName"
+        android:layout_below="@+id/logIn"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:ems="10"
+        android:hint="@string/usernameHint"
+        android:drawableLeft="@android:drawable/ic_menu_edit"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="15sp"
+        android:background="@drawable/edittext"
+        android:inputType="text"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:id="@+id/password"
+        android:layout_below="@+id/userName"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:ems="10"
+        android:hint="@string/passwordHint"
+        android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="15sp"
+        android:background="@drawable/edittext"
+        android:inputType="textPassword"
+        />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:id="@+id/deptSpinner"
+        android:layout_below="@id/password"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:drawableRight="@android:drawable/arrow_down_float"
+        android:background="@drawable/edittext"
+        ></Spinner>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/btnSignIn"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="90dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btnsignin"
+        android:text="@string/signIn"
+        android:textSize="15sp"
+        android:textColor="@color/colorTextPrimary"
+        android:textStyle="bold"
+
+        />
+
+
+
 
 </RelativeLayout>
