@@ -85,6 +85,10 @@ public class MainActivity extends ActionBarActivity {
 
             }
         });
+
+         //finish();
+        onPause();
+
     }
 
     private void login() {

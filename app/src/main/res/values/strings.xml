@@ -35,6 +35,12 @@
     <string name="drawer_item_log_out">Log out</string>
     <string name="drawer_item_home">Home</string>
     <string name="title_activity_home">Home</string>
+    <string name="title_activity_leave_apply">Leave Apply</string>
+    <string name="title_activity_approve">Approve</string>
+    <string name="title_activity_relieve">Relieve</string>
+    <string name="title_activity_myleave">Myleave</string>
+    <string name="title_activity_apply2">Apply2</string>
+    <string name="title_activity_apply3">Apply3</string>
 
 
 </resources>

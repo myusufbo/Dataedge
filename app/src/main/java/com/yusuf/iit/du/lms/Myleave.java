@@ -1,7 +1,6 @@
 package com.yusuf.iit.du.lms;
 
 import android.content.Intent;
-import android.content.pm.PackageInstaller;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
@@ -23,19 +22,21 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 
-public class Home extends ActionBarActivity {
+public class Myleave extends ActionBarActivity {
     Drawer.Result result;
     AccountHeader.Result headerResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_myleave);
 
         initDrawer(savedInstanceState);
+
+
     }
     private void initDrawer(Bundle savedInstanceState) {
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.homeToolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.myLeaveToolbar);
         setSupportActionBar(toolbar);
 
         headerResult = new AccountHeader()
@@ -82,26 +83,26 @@ public class Home extends ActionBarActivity {
                             Fragment fragment = null;
                             if (drawerItem.getIdentifier() == 0) {
                                 //fragment = new Calculator();
-//                                startActivity(new Intent(Hom.this,MainActivity.class));
+                                startActivity(new Intent(Myleave.this,Home.class));
 //                                Toast.makeText(getBaseContext(), "On Drawer Created", Toast.LENGTH_LONG).show();
 
                             } else if (drawerItem.getIdentifier() == 1) {
                                 //fragment = new Calculator();
-                                 startActivity(new Intent(Home.this,LeaveApply.class));
+                                 startActivity(new Intent(Myleave.this,LeaveApply.class));
 
 
                             } else if (drawerItem.getIdentifier() == 2) {
 
-                                startActivity(new Intent(Home.this, Approve.class));
+                                 startActivity(new Intent(Myleave.this, Approve.class));
                             }
                             else if (drawerItem.getIdentifier() == 3) {
 
-                                startActivity(new Intent(Home.this, Relieve.class));
+                                startActivity(new Intent(Myleave.this, Relieve.class));
                             } else if (drawerItem.getIdentifier() == 4) {
-                                startActivity(new Intent(Home.this, Myleave.class));
+                                // startActivity(new Intent(HealthCalculator.this, Hospital.class));
                             } else if (drawerItem.getIdentifier() == 5) {
-                                startActivity(new Intent(Home.this, MainActivity.class));
-//                                finish();
+                                startActivity(new Intent(Myleave.this, MainActivity.class));
+                                finish();
 //                                PackageInstaller.Session session= new PackageInstaller.Session();
                             }
                            /* else if (drawerItem.getIdentifier() == 6) {
@@ -117,7 +118,7 @@ public class Home extends ActionBarActivity {
                     }
                 })
                 .withFireOnInitialOnClick(true)
-                .withSelectedItem(0)
+                .withSelectedItem(4)
                 .build();
         //result.getActionBarDrawerToggle().setDrawerIndicatorEnabled(false);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -128,10 +129,11 @@ public class Home extends ActionBarActivity {
     }
 
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
+        getMenuInflater().inflate(R.menu.menu_myleave, menu);
         return true;
     }
 

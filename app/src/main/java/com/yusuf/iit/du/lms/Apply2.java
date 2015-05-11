@@ -1,7 +1,6 @@
 package com.yusuf.iit.du.lms;
 
 import android.content.Intent;
-import android.content.pm.PackageInstaller;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
@@ -11,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
@@ -23,19 +21,19 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 
-public class Home extends ActionBarActivity {
+public class Apply2 extends ActionBarActivity {
     Drawer.Result result;
     AccountHeader.Result headerResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_apply2);
 
         initDrawer(savedInstanceState);
     }
     private void initDrawer(Bundle savedInstanceState) {
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.homeToolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.applyToolbar);
         setSupportActionBar(toolbar);
 
         headerResult = new AccountHeader()
@@ -82,25 +80,25 @@ public class Home extends ActionBarActivity {
                             Fragment fragment = null;
                             if (drawerItem.getIdentifier() == 0) {
                                 //fragment = new Calculator();
-//                                startActivity(new Intent(Hom.this,MainActivity.class));
+                                startActivity(new Intent(Apply2.this, Home.class));
 //                                Toast.makeText(getBaseContext(), "On Drawer Created", Toast.LENGTH_LONG).show();
 
                             } else if (drawerItem.getIdentifier() == 1) {
                                 //fragment = new Calculator();
-                                 startActivity(new Intent(Home.this,LeaveApply.class));
+//                                 startActivity(new Intent(getApplicationContext(),HealthCalculator.class));
 
 
                             } else if (drawerItem.getIdentifier() == 2) {
 
-                                startActivity(new Intent(Home.this, Approve.class));
+                                startActivity(new Intent(Apply2.this, Approve.class));
                             }
                             else if (drawerItem.getIdentifier() == 3) {
 
-                                startActivity(new Intent(Home.this, Relieve.class));
+                                startActivity(new Intent(Apply2.this, Relieve.class));
                             } else if (drawerItem.getIdentifier() == 4) {
-                                startActivity(new Intent(Home.this, Myleave.class));
+                                startActivity(new Intent(Apply2.this, Myleave.class));
                             } else if (drawerItem.getIdentifier() == 5) {
-                                startActivity(new Intent(Home.this, MainActivity.class));
+                                startActivity(new Intent(Apply2.this, MainActivity.class));
 //                                finish();
 //                                PackageInstaller.Session session= new PackageInstaller.Session();
                             }
@@ -117,7 +115,7 @@ public class Home extends ActionBarActivity {
                     }
                 })
                 .withFireOnInitialOnClick(true)
-                .withSelectedItem(0)
+                .withSelectedItem(1)
                 .build();
         //result.getActionBarDrawerToggle().setDrawerIndicatorEnabled(false);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -131,7 +129,7 @@ public class Home extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
+        getMenuInflater().inflate(R.menu.menu_apply2, menu);
         return true;
     }
 
