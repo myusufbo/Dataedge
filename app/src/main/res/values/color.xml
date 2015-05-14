@@ -63,7 +63,7 @@
 
     <!-- OVERWRITE THESE COLORS FOR A DARK THEME -->
     <!-- MaterialDrawer DEFAULT DARK colors -->
-    <color name="material_drawer_dark_window_background">#303030</color>
+    <color name="material_drawer_dark_window_background">#fff</color>
     <color name="material_drawer_dark_background">#80303030</color>
     <!-- MaterialDrawer DEFAULT DARK text / items colors -->
     <color name="material_drawer_dark_icons">#000</color>

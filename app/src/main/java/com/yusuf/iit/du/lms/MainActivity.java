@@ -14,11 +14,28 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 
 public class MainActivity extends ActionBarActivity {
-
+//    public static String username=null;
+//    public static String password=null;
+//    public static String dept=null;
+    public static String employeeId="";
+    public static String employeeName;
     public static String rslt=null;
+    public static String employeeRslt=null;
     EditText edtUserName,edtPassword;
     Button btnSignIn;
     Spinner deptSpinner;
@@ -34,13 +51,17 @@ public class MainActivity extends ActionBarActivity {
         deptSpinner=(Spinner)findViewById(R.id.deptSpinner);
         ArrayAdapter<CharSequence> deptAdapter;
 
+
+
         deptAdapter=ArrayAdapter.createFromResource(MainActivity.this,R.array.deptArray,android.R.layout.simple_spinner_item);
         deptAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         deptSpinner.setAdapter(deptAdapter);
 
-//        String username= edtUserName.getText().toString();
-//        String password=edtPassword.getText().toString();
-//        String dept =deptSpinner.toString();
+//        username= edtUserName.getText().toString();
+//        password=edtPassword.getText().toString();
+//        dept = deptSpinner.getSelectedItem().toString();
+
+
         final AlertDialog ad= new AlertDialog.Builder(MainActivity.this).create();
         btnSignIn=(Button)findViewById(R.id.btnSignIn);
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +72,10 @@ public class MainActivity extends ActionBarActivity {
                 try{
                     String username= edtUserName.getText().toString();
                     String password=edtPassword.getText().toString();
-                    String dept = deptSpinner.getSelectedItem().toString();
+                    String dept =deptSpinner.getSelectedItem().toString();
+                    Log.e(dept,"sf");
+                    Log.e(username,"sf");
+                    Log.e(password,"sf");
                     rslt="START";
                     Caller c= new Caller();
                     c.Username=username;
@@ -69,31 +93,155 @@ public class MainActivity extends ActionBarActivity {
                     }
 
 
+                    ad.setMessage(rslt);
+                }
+                catch (Exception ex){
+                    ad.setMessage("ERROR");
+                }
+                employee();
+                login();
+
+                /*int m= Integer.valueOf(rslt);
+                if(m==0){
+                    startActivity(new Intent(MainActivity.this,Home.class));
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
+                }*/
+
+
+/*                try{
+                    String userName=edtUserName.getText().toString();
+                    String userId= "DEFSSLPO\\"+userName;
+                    //Log.e(userId,"sf");
+                    employeeRslt="START";
+                    EmployeeCaller c= new EmployeeCaller();
+
+                    c.UserId=userId;
+                    c.join();c.start();
+                    while (employeeRslt=="START"){
+                        try
+                        {
+                            Thread.sleep(10);
+                        }
+                        catch (Exception ezx){
+                            ezx.toString();
+                        }
+                    }
+
+               //ad.setMessage(employeeRslt);
 //                    ad.setMessage(rslt);
                 }
                 catch (Exception ex){
                     ad.setMessage("ERROR");
                 }
-                int m= Integer.valueOf(rslt);
-                if(m==0){
-                    startActivity(new Intent(MainActivity.this,Home.class));
-                }
-                else{
-                    ad.setMessage("Error");
-                }
-                //ad.show();
+                try {
+//                    InputStream is = getAssets().open(rslt);
+                    InputStream is = new ByteArrayInputStream(employeeRslt.getBytes("UTF-8"));
+                    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                    Document doc = dBuilder.parse(is);
+
+                    Element element=doc.getDocumentElement();
+                    element.normalize();
+
+                    NodeList nList = doc.getElementsByTagName("GetLeaveTypeResponse");
+                    for (int i=0; i<nList.getLength(); i++) {
+
+                        Node node = nList.item(i);
+                        if (node.getNodeType() == Node.ELEMENT_NODE) {
+                            Element element2 = (Element) node;
+
+                            employeeName= getValue("EmployeeId", element2).toString();
+                            employeeId= getValue("EmployeeName", element2).toString();
+                           // tv1.setText(tv1.getText() + "\nName : " + getValue("EmployeeId", element2) + "\n");
+//                            Toast.makeText(getApplicationContext(),employeeName +"and"+ employeeId,Toast.LENGTH_LONG).show();
+                        }
+                    }//end of for loop
+                    Toast.makeText(getApplicationContext(),employeeName +"and"+ employeeId,Toast.LENGTH_LONG).show();
+
+                } catch (Exception e) {e.printStackTrace();}*/
+
+
+
+
+                ad.show();
 
             }
         });
 
          //finish();
-        onPause();
+//        onPause();
 
     }
 
+
+
     private void login() {
 
+        int m= Integer.valueOf(rslt);
+        if(m==0){
+            startActivity(new Intent(MainActivity.this,Home.class));
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
+        }
 
+    }
+
+    private void employee(){
+        try{
+            String userName=edtUserName.getText().toString();
+            String userId= "DEFSSLPO\\"+userName;
+            //Log.e(userId,"sf");
+            employeeRslt="START";
+            EmployeeCaller c= new EmployeeCaller();
+
+            c.UserId=userId;
+            c.join();c.start();
+            while (employeeRslt=="START"){
+                try
+                {
+                    Thread.sleep(10);
+                }
+                catch (Exception ezx){
+                    ezx.toString();
+                }
+            }
+
+            //ad.setMessage(employeeRslt);
+//                    ad.setMessage(rslt);
+        }
+        catch (Exception ex){
+            //ad.setMessage("ERROR");
+            ex.toString();
+        }
+        try {
+//                    InputStream is = getAssets().open(rslt);
+            InputStream is = new ByteArrayInputStream(employeeRslt.getBytes("UTF-8"));
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(is);
+
+            Element element=doc.getDocumentElement();
+            element.normalize();
+
+            NodeList nList = doc.getElementsByTagName("GetLeaveTypeResponse");
+            for (int i=0; i<nList.getLength(); i++) {
+
+                Node node = nList.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element2 = (Element) node;
+
+                    employeeName= getValue("EmployeeId", element2).toString();
+                    employeeId= getValue("EmployeeName", element2).toString();
+                    // tv1.setText(tv1.getText() + "\nName : " + getValue("EmployeeId", element2) + "\n");
+//                            Toast.makeText(getApplicationContext(),employeeName +"and"+ employeeId,Toast.LENGTH_LONG).show();
+                }
+            }//end of for loop
+            Toast.makeText(getApplicationContext(),employeeName +"and"+ employeeId,Toast.LENGTH_LONG).show();
+
+        } catch (Exception e) {e.printStackTrace();}
     }
 
     @Override
@@ -116,5 +264,10 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    private  String getValue(String tag, Element element) {
+        NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
+        Node node = (Node) nodeList.item(0);
+        return node.getNodeValue();
     }
 }

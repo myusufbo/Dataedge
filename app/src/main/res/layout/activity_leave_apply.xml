@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context="com.yusuf.iit.du.lms.LeaveApply">
 
     <android.support.v7.widget.Toolbar
@@ -11,4 +12,109 @@
         android:elevation="10dp"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
         />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLayout"
+        android:layout_below="@+id/applyToolbar">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/purposeOfleave"
+            android:text="@string/purposeOfLeaveTxt"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="25sp"
+            android:textColor="@color/colorTextSecondary"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@+id/purposeOfleave"
+            android:id="@+id/editTextPurposeofLeave"
+            android:hint="@string/purposeofLeaveHint"
+            android:background="@drawable/editboxwhite"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fromText"
+            android:layout_below="@id/editTextPurposeofLeave"
+            android:text="@string/fromText"
+            android:layout_marginTop="18dp"
+            android:textSize="25sp"
+            android:layout_marginLeft="16dp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/editTextPurposeofLeave"
+            android:id="@+id/editTextFrom"
+            android:hint="@string/dateFormat"
+            android:background="@drawable/editboxwhite"
+            android:inputType="date"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@+id/fromText"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/toText"
+            android:layout_below="@id/fromText"
+            android:text="@string/toText"
+            android:layout_marginTop="30dp"
+            android:textSize="25sp"
+            android:layout_marginLeft="16dp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/editTextFrom"
+            android:id="@+id/editTextTo"
+            android:hint="@string/dateFormat"
+            android:background="@drawable/editboxwhite"
+            android:inputType="date"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@+id/toText"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Days"
+            android:layout_below="@id/editTextTo"
+            android:textSize="25sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dateShow"
+            android:textSize="25sp"
+            android:layout_below="@id/editTextTo"
+            android:layout_marginLeft="16dp"
+            />
+
+
+
+
+    </RelativeLayout>
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/previousButton"
+    android:layout_alignParentBottom="true"
+    android:background="@drawable/ic_launcher"
+    android:layout_marginLeft="15dp"
+
+    />
 </RelativeLayout>

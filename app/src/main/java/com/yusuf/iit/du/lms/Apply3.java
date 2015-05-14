@@ -41,7 +41,7 @@ public class Apply3 extends ActionBarActivity {
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.header)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Yusuf").withEmail("yusufboss420@gmail.com").withIcon(getResources().getDrawable(R.drawable.profile))
+                        new ProfileDrawerItem().withName(MainActivity.employeeName).withEmail(MainActivity.employeeId).withIcon(getResources().getDrawable(R.drawable.profile))
 //                        new ProfileDrawerItem().withName("Srabon").withEmail("kazisrabon@gmail.com").withIcon(getResources().getDrawable(R.drawable.profile2))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {

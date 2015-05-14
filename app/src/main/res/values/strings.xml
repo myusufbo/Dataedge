@@ -8,7 +8,11 @@
     <string name="passwordHint">Password</string>
     <string name="signIn">Sign In</string>
 
-
+    <string name="purposeOfLeaveTxt">Purpose of Leave(Max 500 Characters</string>
+    <string name="purposeofLeaveHint">Purpose of Leave</string>
+    <string name="fromText">From</string>
+    <string name="toText">To</string>
+    <string name="dateFormat">DD-MM-YYYY</string>
 
 
     <!--array -->

@@ -1,5 +1,6 @@
 package com.yusuf.iit.du.lms;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageInstaller;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 
 public class Home extends ActionBarActivity {
+    public static String rslt;
     Drawer.Result result;
     AccountHeader.Result headerResult;
     @Override
@@ -32,6 +34,7 @@ public class Home extends ActionBarActivity {
         setContentView(R.layout.activity_home);
 
         initDrawer(savedInstanceState);
+
     }
     private void initDrawer(Bundle savedInstanceState) {
 
@@ -42,7 +45,7 @@ public class Home extends ActionBarActivity {
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.header)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Yusuf").withEmail("yusufboss420@gmail.com").withIcon(getResources().getDrawable(R.drawable.profile))
+                        new ProfileDrawerItem().withName(MainActivity.employeeName).withEmail(MainActivity.employeeId).withIcon(getResources().getDrawable(R.drawable.profile))
 //                        new ProfileDrawerItem().withName("Srabon").withEmail("kazisrabon@gmail.com").withIcon(getResources().getDrawable(R.drawable.profile2))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {

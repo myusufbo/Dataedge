@@ -1,15 +1,20 @@
 package com.yusuf.iit.du.lms;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mikepenz.iconics.typeface.FontAwesome;
@@ -21,15 +26,98 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
-public class LeaveApply extends ActionBarActivity {
+
+public class LeaveApply extends ActionBarActivity implements View.OnClickListener {
     Drawer.Result result;
     AccountHeader.Result headerResult;
+
+    EditText edtPurposeofleave, editFrom,editTo;
+    TextView tvDateShow;
+
+    Calendar fromDate,toDate;
+
+    private DatePickerDialog fromDatePickerDialog;
+    private DatePickerDialog toDatePickerDialog;
+
+    private SimpleDateFormat dateFormatter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leave_apply);
         initDrawer(savedInstanceState);
+
+        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+
+        findViewsById();
+
+        setDateTimeField();
+
+
+    }
+
+    private void findViewsById() {
+        edtPurposeofleave= (EditText)findViewById(R.id.editTextPurposeofLeave);
+
+        editFrom = (EditText) findViewById(R.id.editTextFrom);
+        editFrom.setInputType(InputType.TYPE_NULL);
+        editFrom.requestFocus();
+
+        editTo = (EditText) findViewById(R.id.editTextTo);
+        editTo.setInputType(InputType.TYPE_NULL);
+
+        tvDateShow=(TextView)findViewById(R.id.dateShow);
+    }
+
+    private void setDateTimeField() {
+        editFrom.setOnClickListener(this);
+        editTo.setOnClickListener(this);
+
+        Calendar newCalendar = Calendar.getInstance();
+        fromDatePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                fromDate=newDate;
+                editFrom.setText(dateFormatter.format(newDate.getTime()));
+            }
+
+        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+
+        toDatePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                toDate=newDate;
+                editTo.setText(dateFormatter.format(newDate.getTime()));
+                getTimeDiff();
+            }
+
+        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+    }
+
+    private void getTimeDiff() {
+        long diff=toDate.getTimeInMillis()-fromDate.getTimeInMillis();
+
+        long days= (diff/(60*60*24*1000))+1;
+
+        tvDateShow.setText(days+"days");
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == editFrom) {
+            fromDatePickerDialog.show();
+        } else if(view == editTo) {
+            toDatePickerDialog.show();
+        }
     }
     private void initDrawer(Bundle savedInstanceState) {
 
@@ -40,7 +128,7 @@ public class LeaveApply extends ActionBarActivity {
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.header)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Yusuf").withEmail("yusufboss420@gmail.com").withIcon(getResources().getDrawable(R.drawable.profile))
+                        new ProfileDrawerItem().withName(MainActivity.employeeName).withEmail(MainActivity.employeeId).withIcon(getResources().getDrawable(R.drawable.profile))
 //                        new ProfileDrawerItem().withName("Srabon").withEmail("kazisrabon@gmail.com").withIcon(getResources().getDrawable(R.drawable.profile2))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
