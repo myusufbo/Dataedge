@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
 //    public static String username=null;
 //    public static String password=null;
 //    public static String dept=null;
-    public static String employeeId="";
+    public static String employeeId;
     public static String employeeName;
     public static String rslt=null;
     public static String employeeRslt=null;
@@ -73,9 +73,9 @@ public class MainActivity extends ActionBarActivity {
                     String username= edtUserName.getText().toString();
                     String password=edtPassword.getText().toString();
                     String dept =deptSpinner.getSelectedItem().toString();
-                    Log.e(dept,"sf");
-                    Log.e(username,"sf");
-                    Log.e(password,"sf");
+//                    Log.e(dept,"sf");
+//                    Log.e(username,"sf");
+//                    Log.e(password,"sf");
                     rslt="START";
                     Caller c= new Caller();
                     c.Username=username;
@@ -101,71 +101,7 @@ public class MainActivity extends ActionBarActivity {
                 employee();
                 login();
 
-                /*int m= Integer.valueOf(rslt);
-                if(m==0){
-                    startActivity(new Intent(MainActivity.this,Home.class));
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
-                }*/
 
-
-/*                try{
-                    String userName=edtUserName.getText().toString();
-                    String userId= "DEFSSLPO\\"+userName;
-                    //Log.e(userId,"sf");
-                    employeeRslt="START";
-                    EmployeeCaller c= new EmployeeCaller();
-
-                    c.UserId=userId;
-                    c.join();c.start();
-                    while (employeeRslt=="START"){
-                        try
-                        {
-                            Thread.sleep(10);
-                        }
-                        catch (Exception ezx){
-                            ezx.toString();
-                        }
-                    }
-
-               //ad.setMessage(employeeRslt);
-//                    ad.setMessage(rslt);
-                }
-                catch (Exception ex){
-                    ad.setMessage("ERROR");
-                }
-                try {
-//                    InputStream is = getAssets().open(rslt);
-                    InputStream is = new ByteArrayInputStream(employeeRslt.getBytes("UTF-8"));
-                    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-                    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-                    Document doc = dBuilder.parse(is);
-
-                    Element element=doc.getDocumentElement();
-                    element.normalize();
-
-                    NodeList nList = doc.getElementsByTagName("GetLeaveTypeResponse");
-                    for (int i=0; i<nList.getLength(); i++) {
-
-                        Node node = nList.item(i);
-                        if (node.getNodeType() == Node.ELEMENT_NODE) {
-                            Element element2 = (Element) node;
-
-                            employeeName= getValue("EmployeeId", element2).toString();
-                            employeeId= getValue("EmployeeName", element2).toString();
-                           // tv1.setText(tv1.getText() + "\nName : " + getValue("EmployeeId", element2) + "\n");
-//                            Toast.makeText(getApplicationContext(),employeeName +"and"+ employeeId,Toast.LENGTH_LONG).show();
-                        }
-                    }//end of for loop
-                    Toast.makeText(getApplicationContext(),employeeName +"and"+ employeeId,Toast.LENGTH_LONG).show();
-
-                } catch (Exception e) {e.printStackTrace();}*/
-
-
-
-
-                ad.show();
 
             }
         });
@@ -209,39 +145,43 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
 
-            //ad.setMessage(employeeRslt);
+//            ad.setMessage(employeeRslt);
 //                    ad.setMessage(rslt);
+            Log.e(employeeRslt,"rslt");
+            try {
+//                    InputStream is = getAssets().open(rslt);
+                InputStream is = new ByteArrayInputStream(employeeRslt.getBytes("UTF-8"));
+                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                Document doc = dBuilder.parse(is);
+
+                Element element=doc.getDocumentElement();
+                element.normalize();
+
+                NodeList nList = doc.getElementsByTagName("EmployeeInfoResponse");
+                for (int i=0; i<nList.getLength(); i++) {
+
+                    Node node = nList.item(i);
+                    if (node.getNodeType() == Node.ELEMENT_NODE) {
+                        Element element2 = (Element) node;
+
+                        employeeName= getValue("EmployeeName", element2).toString();
+                        employeeId= getValue("EmployeeId", element2).toString();
+                        // tv1.setText(tv1.getText() + "\nName : " + getValue("EmployeeId", element2) + "\n");
+//                            Toast.makeText(getApplicationContext(),employeeName +"and"+ employeeId,Toast.LENGTH_LONG).show();
+//                        Log.e(employeeName,"name");
+//                        Log.e(employeeId,"Id");
+                    }
+                }//end of for loop
+                Toast.makeText(MainActivity.this, employeeName +"and"+ employeeId,Toast.LENGTH_LONG).show();
+
+            } catch (Exception e) {e.printStackTrace();}
         }
         catch (Exception ex){
             //ad.setMessage("ERROR");
             ex.toString();
         }
-        try {
-//                    InputStream is = getAssets().open(rslt);
-            InputStream is = new ByteArrayInputStream(employeeRslt.getBytes("UTF-8"));
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(is);
 
-            Element element=doc.getDocumentElement();
-            element.normalize();
-
-            NodeList nList = doc.getElementsByTagName("GetLeaveTypeResponse");
-            for (int i=0; i<nList.getLength(); i++) {
-
-                Node node = nList.item(i);
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element element2 = (Element) node;
-
-                    employeeName= getValue("EmployeeId", element2).toString();
-                    employeeId= getValue("EmployeeName", element2).toString();
-                    // tv1.setText(tv1.getText() + "\nName : " + getValue("EmployeeId", element2) + "\n");
-//                            Toast.makeText(getApplicationContext(),employeeName +"and"+ employeeId,Toast.LENGTH_LONG).show();
-                }
-            }//end of for loop
-            Toast.makeText(getApplicationContext(),employeeName +"and"+ employeeId,Toast.LENGTH_LONG).show();
-
-        } catch (Exception e) {e.printStackTrace();}
     }
 
     @Override

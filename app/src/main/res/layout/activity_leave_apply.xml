@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/md_white_1000"
     tools:context="com.yusuf.iit.du.lms.LeaveApply">
 
     <android.support.v7.widget.Toolbar
@@ -11,6 +12,7 @@
         android:background="@color/ColorAccent"
         android:elevation="10dp"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
+
         />
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,9 +38,9 @@
             android:hint="@string/purposeofLeaveHint"
             android:background="@drawable/editboxwhite"
             android:inputType="textMultiLine"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:ems="10"
             />
         <TextView
@@ -47,7 +49,7 @@
             android:id="@+id/fromText"
             android:layout_below="@id/editTextPurposeofLeave"
             android:text="@string/fromText"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="30dp"
             android:textSize="25sp"
             android:layout_marginLeft="16dp"
             />
@@ -59,7 +61,7 @@
             android:hint="@string/dateFormat"
             android:background="@drawable/editboxwhite"
             android:inputType="date"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
             android:layout_toRightOf="@+id/fromText"/>
@@ -82,7 +84,7 @@
             android:background="@drawable/editboxwhite"
             android:inputType="date"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="35dp"
+            android:layout_marginLeft="37dp"
             android:layout_marginRight="20dp"
             android:layout_toRightOf="@+id/toText"/>
 
@@ -107,14 +109,8 @@
 
 
 
-    </RelativeLayout>
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/previousButton"
-    android:layout_alignParentBottom="true"
-    android:background="@drawable/ic_launcher"
-    android:layout_marginLeft="15dp"
 
-    />
+    </RelativeLayout>
+
+
 </RelativeLayout>

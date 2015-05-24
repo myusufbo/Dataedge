@@ -59,6 +59,10 @@
         android:drawableRight="@android:drawable/arrow_down_float"
         android:background="@drawable/edittext"
         ></Spinner>
+
+
+
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -74,6 +78,7 @@
         android:textStyle="bold"
 
         />
+
 
 
 

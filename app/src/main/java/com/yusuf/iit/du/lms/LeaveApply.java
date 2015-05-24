@@ -107,6 +107,7 @@ public class LeaveApply extends ActionBarActivity implements View.OnClickListene
 
         long days= (diff/(60*60*24*1000))+1;
 
+
         tvDateShow.setText(days+"days");
 
     }
@@ -119,7 +120,7 @@ public class LeaveApply extends ActionBarActivity implements View.OnClickListene
             toDatePickerDialog.show();
         }
     }
-    private void initDrawer(Bundle savedInstanceState) {
+    private void initDrawer(Bundle savedInstanceState)   {
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.applyToolbar);
         setSupportActionBar(toolbar);
