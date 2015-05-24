@@ -127,8 +127,8 @@ public class MainActivity extends ActionBarActivity {
 
     private void employee(){
         try{
-            String userName=edtUserName.getText().toString();
-            String userId= "DEFSSLPO\\"+userName;
+            String username=edtUserName.getText().toString();
+            String userId= "DEFSSLPO\\"+username;
             //Log.e(userId,"sf");
             employeeRslt="START";
             EmployeeCaller c= new EmployeeCaller();
