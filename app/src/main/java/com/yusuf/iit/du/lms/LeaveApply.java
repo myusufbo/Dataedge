@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
@@ -35,8 +36,11 @@ public class LeaveApply extends ActionBarActivity implements View.OnClickListene
     Drawer.Result result;
     AccountHeader.Result headerResult;
 
+    public static String purpose_of_leave="";
+
     EditText edtPurposeofleave, editFrom,editTo;
     TextView tvDateShow;
+    FloatingActionButton nextButton,cancelButton;
 
     Calendar fromDate,toDate;
 
@@ -57,6 +61,28 @@ public class LeaveApply extends ActionBarActivity implements View.OnClickListene
 
         setDateTimeField();
 
+        purpose_of_leave=edtPurposeofleave.getText().toString();
+
+        nextButton= (FloatingActionButton) findViewById(R.id.nextButton);
+        cancelButton= (FloatingActionButton) findViewById(R.id.cancelButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if(purpose_of_leave!=null){
+                   startActivity(new Intent(LeaveApply.this, Apply2.class));
+               }
+                else{
+                   Toast.makeText(LeaveApply.this,"Fill up Purpose of leave",Toast.LENGTH_LONG).show();
+               }
+            }
+        });
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LeaveApply.this,Home.class));
+            }
+        });
+
 
     }
 
@@ -71,6 +97,9 @@ public class LeaveApply extends ActionBarActivity implements View.OnClickListene
         editTo.setInputType(InputType.TYPE_NULL);
 
         tvDateShow=(TextView)findViewById(R.id.dateShow);
+
+
+
     }
 
     private void setDateTimeField() {
@@ -97,6 +126,7 @@ public class LeaveApply extends ActionBarActivity implements View.OnClickListene
                 toDate=newDate;
                 editTo.setText(dateFormatter.format(newDate.getTime()));
                 getTimeDiff();
+
             }
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
@@ -119,6 +149,7 @@ public class LeaveApply extends ActionBarActivity implements View.OnClickListene
         } else if(view == editTo) {
             toDatePickerDialog.show();
         }
+
     }
     private void initDrawer(Bundle savedInstanceState)   {
 

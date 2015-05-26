@@ -6,11 +6,17 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
@@ -20,17 +26,117 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
+import java.util.ArrayList;
+
 
 public class Apply2 extends ActionBarActivity {
     Drawer.Result result;
     AccountHeader.Result headerResult;
+    public static String address_details="";
+    public static String phone="";
+    public static String mobile_no="";
+    public static String email="";
+
+//ArrayList<String> leave=new ArrayList<>();
+    Spinner leave_type_spinner;
+    EditText addresseEdit,phoneeEdit,mobileEdit,emailEdit;
+
+    FloatingActionButton cancelButton,previousButton,nextButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apply2);
 
         initDrawer(savedInstanceState);
+
+        findViewsById();
+
+        leave_type_spinner=(Spinner)findViewById(R.id.typeofleaveSpinner);
+        ArrayAdapter<String> leave_type_Adapter;
+
+
+        leave_type_Adapter=new ArrayAdapter<String>(Apply2.this,android.R.layout.simple_spinner_item,MainActivity.leaveType);
+//        leave_type_Adapter=ArrayAdapter.createFromResource(Apply2.this,MainActivity.leaveType,android.R.layout.simple_spinner_item);
+        leave_type_Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        leave_type_spinner.setAdapter(leave_type_Adapter);
+
+
+        address_details=addresseEdit.getText().toString();
+        phone=phoneeEdit.getText().toString();
+        mobile_no=mobileEdit.getText().toString();
+        email=emailEdit.getText().toString();
+
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Apply2.this,Home.class));
+
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if((address_details!=null)){
+                    startActivity(new Intent(Apply2.this, Apply3.class));
+                }
+                else if((phone!=null)){
+                    startActivity(new Intent(Apply2.this, Apply3.class));
+                }
+                else if((mobile_no!=null)){
+                    startActivity(new Intent(Apply2.this, Apply3.class));
+                }
+                else if((email!=null)){
+                    startActivity(new Intent(Apply2.this, Apply3.class));
+                }
+                else if((address_details==null)||(phone==null)||(mobile_no==null)||(email==null)){
+//                    startActivity(new Intent(Apply2.this,Apply3.class));
+                    Toast.makeText(Apply2.this,"Fill Up the blank one",Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+        previousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Apply2.this,LeaveApply.class));
+            }
+        });
+
+
+
+
+
     }
+
+    private void findViewsById() {
+        addresseEdit= (EditText) findViewById(R.id.addressEditText);
+
+
+        phoneeEdit= (EditText) findViewById(R.id.phoneEditText);
+
+
+        mobileEdit= (EditText) findViewById(R.id.mobileEditText);
+        emailEdit= (EditText) findViewById(R.id.emailEditText);
+
+        cancelButton= (FloatingActionButton) findViewById(R.id.cancelButton2);
+        nextButton= (FloatingActionButton) findViewById(R.id.nextButton2);
+        previousButton= (FloatingActionButton) findViewById(R.id.previousButton);
+    }
+
+    private void getSpinner() {
+//        leave_type_spinner=(Spinner)findViewById(R.id.deptSpinner);
+        ArrayAdapter<String> leave_type_Adapter;
+
+
+        leave_type_Adapter=new ArrayAdapter<String>(Apply2.this,android.R.layout.simple_spinner_item,MainActivity.leaveType);
+//        leave_type_Adapter=ArrayAdapter.createFromResource(Apply2.this,MainActivity.leaveType,android.R.layout.simple_spinner_item);
+        leave_type_Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        leave_type_spinner.setAdapter(leave_type_Adapter);
+    }
+
     private void initDrawer(Bundle savedInstanceState) {
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.applyToolbar);

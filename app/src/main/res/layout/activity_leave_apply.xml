@@ -88,15 +88,7 @@
             android:layout_marginRight="20dp"
             android:layout_toRightOf="@+id/toText"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Days"
-            android:layout_below="@id/editTextTo"
-            android:textSize="25sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="16dp"
-            />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -106,7 +98,25 @@
             android:layout_marginLeft="16dp"
             />
 
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nextButton"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/nextbutton"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            />
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancelButton"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/cancelbutton"
 
+            />
 
 
 

@@ -82,7 +82,8 @@ public class CallSoap {
         }
 //        String result= httpTransportSE.responseDump;
 //        return result;
-            return  response.toString();
+        String result=response.toString();
+            return  result;
 
 
     }

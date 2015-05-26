@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
@@ -24,12 +26,22 @@ import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 public class Apply3 extends ActionBarActivity {
     Drawer.Result result;
     AccountHeader.Result headerResult;
+
+    Spinner reliever_name_spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apply3);
 
         initDrawer(savedInstanceState);
+
+        reliever_name_spinner= (Spinner) findViewById(R.id.relieverNameSpinner);
+
+        ArrayAdapter<String> reliever_name_Adapter;
+        reliever_name_Adapter=new ArrayAdapter<String>(Apply3.this, android.R.layout.simple_spinner_item,MainActivity.relieverName);
+        reliever_name_Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        reliever_name_spinner.setAdapter(reliever_name_Adapter);
+
     }
 
     private void initDrawer(Bundle savedInstanceState) {
